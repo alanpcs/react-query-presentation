@@ -4,6 +4,7 @@ import tseslint from "typescript-eslint";
 import pluginReact from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
+import noTypeAssertion from "eslint-plugin-no-type-assertion";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -14,6 +15,21 @@ export default [
   pluginReact.configs.flat.recommended,
   reactRefresh.configs.vite,
   {
+    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    ignores: ["**/*.test.ts", "**/*.styles.ts", "**/*.stories.ts"],
+    plugins: {
+      "no-type-assertion": noTypeAssertion,
+    },
+    rules: {
+      "no-type-assertion/no-type-assertion": "error", // This are always future bugs. Unless used in test files
+    },
+  },
+  {
+    settings: { react: { version: "detect" } },
+    plugins: { react: pluginReact },
+    rules: { "react/react-in-jsx-scope": "off" },
+  },
+  {
     plugins: {
       "react-hooks": reactHooks,
     },
@@ -23,15 +39,9 @@ export default [
     },
   },
   {
-    settings: { react: { version: "detect" } },
-    plugins: { react: pluginReact },
-    rules: { "react/react-in-jsx-scope": "off" },
-  },
-  {
     rules: {
       "@typescript-eslint/no-unused-vars": [
         "warn",
-        // or error
         {
           argsIgnorePattern: "^_",
           varsIgnorePattern: "^_",
