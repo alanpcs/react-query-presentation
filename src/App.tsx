@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
-  const b = Math.random();
+  const b: number = JSON.parse("test");
   const _a = useEffect(() => {
     if (b > 1) console.log("hi");
   }, [b]);

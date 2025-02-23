@@ -16,7 +16,7 @@ export default [
   reactRefresh.configs.vite,
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
-    ignores: ["**/*.test.ts", "**/*.styles.ts", "**/*.stories.ts"],
+    ignores: ["**/*.test.tsx", "**/*.styles.ts", "**/*.stories.ts"],
     plugins: {
       "no-type-assertion": noTypeAssertion,
     },
@@ -27,7 +27,17 @@ export default [
   {
     settings: { react: { version: "detect" } },
     plugins: { react: pluginReact },
-    rules: { "react/react-in-jsx-scope": "off" },
+    rules: {
+      "react/react-in-jsx-scope": "off",
+    },
+  },
+  {
+    settings: { react: { version: "detect" } },
+    plugins: { react: pluginReact },
+    files: ["**/*.svg"],
+    rules: {
+      "react/no-unknown-property": "off",
+    },
   },
   {
     plugins: {
