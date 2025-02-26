@@ -5,6 +5,7 @@ import pluginReact from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import noTypeAssertion from "eslint-plugin-no-type-assertion";
+import jsxA11y from "eslint-plugin-jsx-a11y";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -14,6 +15,7 @@ export default [
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   reactRefresh.configs.vite,
+  jsxA11y.flatConfigs.recommended,
   {
     files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
     ignores: ["**/*.test.tsx", "**/*.styles.ts", "**/*.stories.ts"],
@@ -29,6 +31,7 @@ export default [
     plugins: { react: pluginReact },
     rules: {
       "react/react-in-jsx-scope": "off",
+      "react/forbid-component-props": "error",
     },
   },
   {
@@ -56,6 +59,17 @@ export default [
           argsIgnorePattern: "^_",
           varsIgnorePattern: "^_",
           caughtErrorsIgnorePattern: "^_",
+        },
+      ],
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: "JSXAttribute[name.name='className']",
+          message: "Using 'className' is forbidden.",
+        },
+        {
+          selector: "JSXAttribute[name.name='style']",
+          message: "Using 'style' is forbidden.",
         },
       ],
     },
