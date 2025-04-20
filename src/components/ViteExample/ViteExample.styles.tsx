@@ -1,17 +1,5 @@
 import { styled } from "styled-components";
-import { media } from "./styles/media-query";
-
-export const StyledApp = styled.main`
-  max-width: 1280px;
-  margin: auto;
-  padding: 2rem;
-  text-align: center;
-
-  h1 {
-    font-size: 3.2em;
-    line-height: 1.1;
-  }
-`;
+import { media } from "../../styles/media-query";
 
 export const LogoContainer = styled.div`
   display: flex;
