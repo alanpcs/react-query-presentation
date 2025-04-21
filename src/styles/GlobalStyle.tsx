@@ -10,6 +10,9 @@ export const GlobalStyle = createGlobalStyle`
   }
   body, #root {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     font-family: ${({ theme }) => theme.fontFamily.body};
+    padding: 0 1rem;
   }
 `;

@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CenteredTemplate } from "../templates/CenteredTemplate";
-import { ViteExample } from "../components/ViteExample/ViteExample";
+import { Intro } from "../slides/Intro/Intro";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <CenteredTemplate>
-      <ViteExample />
+      <Intro />
     </CenteredTemplate>
   );
 }
