@@ -5,7 +5,11 @@ import { normalizeCss } from "./normalize-css";
 export const GlobalStyle = createGlobalStyle`
   ${resetCss}
   ${normalizeCss}
+  html {
+    font-size: 16px;
+  }
   body, #root {
     min-height: 100vh;
+    font-family: ${({ theme }) => theme.fontFamily.body};
   }
 `;
