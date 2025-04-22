@@ -11,14 +11,28 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as AboutImport } from './routes/about'
+import { Route as TanstackQueryImport } from './routes/tanstack-query'
+import { Route as IntroImport } from './routes/intro'
+import { Route as FrontendStatesImport } from './routes/frontend-states'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
-const AboutRoute = AboutImport.update({
-  id: '/about',
-  path: '/about',
+const TanstackQueryRoute = TanstackQueryImport.update({
+  id: '/tanstack-query',
+  path: '/tanstack-query',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const IntroRoute = IntroImport.update({
+  id: '/intro',
+  path: '/intro',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const FrontendStatesRoute = FrontendStatesImport.update({
+  id: '/frontend-states',
+  path: '/frontend-states',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -39,11 +53,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
+    '/frontend-states': {
+      id: '/frontend-states'
+      path: '/frontend-states'
+      fullPath: '/frontend-states'
+      preLoaderRoute: typeof FrontendStatesImport
+      parentRoute: typeof rootRoute
+    }
+    '/intro': {
+      id: '/intro'
+      path: '/intro'
+      fullPath: '/intro'
+      preLoaderRoute: typeof IntroImport
+      parentRoute: typeof rootRoute
+    }
+    '/tanstack-query': {
+      id: '/tanstack-query'
+      path: '/tanstack-query'
+      fullPath: '/tanstack-query'
+      preLoaderRoute: typeof TanstackQueryImport
       parentRoute: typeof rootRoute
     }
   }
@@ -53,37 +81,47 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/frontend-states': typeof FrontendStatesRoute
+  '/intro': typeof IntroRoute
+  '/tanstack-query': typeof TanstackQueryRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/frontend-states': typeof FrontendStatesRoute
+  '/intro': typeof IntroRoute
+  '/tanstack-query': typeof TanstackQueryRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
+  '/frontend-states': typeof FrontendStatesRoute
+  '/intro': typeof IntroRoute
+  '/tanstack-query': typeof TanstackQueryRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '/' | '/frontend-states' | '/intro' | '/tanstack-query'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/frontend-states' | '/intro' | '/tanstack-query'
+  id: '__root__' | '/' | '/frontend-states' | '/intro' | '/tanstack-query'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
+  FrontendStatesRoute: typeof FrontendStatesRoute
+  IntroRoute: typeof IntroRoute
+  TanstackQueryRoute: typeof TanstackQueryRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
+  FrontendStatesRoute: FrontendStatesRoute,
+  IntroRoute: IntroRoute,
+  TanstackQueryRoute: TanstackQueryRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,14 +135,22 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about"
+        "/frontend-states",
+        "/intro",
+        "/tanstack-query"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/about": {
-      "filePath": "about.tsx"
+    "/frontend-states": {
+      "filePath": "frontend-states.tsx"
+    },
+    "/intro": {
+      "filePath": "intro.tsx"
+    },
+    "/tanstack-query": {
+      "filePath": "tanstack-query.tsx"
     }
   }
 }

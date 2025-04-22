@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CenteredTemplate } from "../templates/CenteredTemplate";
-import { Intro } from "../slides/Intro/Intro";
+import { Typography } from "../components/Typography/Typography";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -9,7 +9,12 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <CenteredTemplate>
-      <Intro />
+      <Typography element="h1" variant="title" size="lg">
+        Mudando a forma de pensar sobre Server State
+      </Typography>
+      <Typography element="h2" variant="title" size="md">
+        Com React Query
+      </Typography>
     </CenteredTemplate>
   );
 }

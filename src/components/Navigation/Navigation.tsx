@@ -5,8 +5,10 @@ import { Typography } from "../Typography/Typography";
 import { useState } from "react";
 
 const slides = [
-  { route: "/", name: "Intro" },
-  { route: "/about", name: "About" },
+  { route: "/", name: "Title" },
+  { route: "/intro", name: "About me" },
+  { route: "/frontend-states", name: "Estados do frontend" },
+  { route: "/tanstack-query", name: "TanStack Query" },
 ] as const satisfies { route: string; name: string }[];
 
 export const Navigation = () => {

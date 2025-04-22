@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledTemplate = styled.main`
-  max-width: 1280px;
   margin: auto;
   padding: 2rem;
   text-align: center;
@@ -12,6 +11,6 @@ export const StyledTemplate = styled.main`
   justify-content: center;
   gap: 1rem;
 
-  min-height: 600px;
-  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+  /* min-height: 600px;
+  box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2); */
 `;
