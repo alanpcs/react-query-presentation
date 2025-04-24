@@ -12,10 +12,7 @@ function RouteComponent() {
   const { data, isLoading, error } = usePokemonList();
 
   return (
-    <CenteredTemplate>
-      <Typography variant="title" element="h1" size="lg">
-        Tanstack / Query
-      </Typography>
+    <CenteredTemplate header="Tanstack / Query">
       <Typography>isLoading: {isLoading ? "true" : "false"}</Typography>
       <Typography>error: {error?.message || "none"}</Typography>
       <StyledList>

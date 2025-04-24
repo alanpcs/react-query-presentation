@@ -36,6 +36,7 @@ export const StyledPokemonList = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    text-transform: capitalize;
 
     &:hover {
       transform: scale(1.05);

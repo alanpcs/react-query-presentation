@@ -12,10 +12,13 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as TanstackQueryImport } from './routes/tanstack-query'
+import { Route as QuestionsImport } from './routes/questions'
 import { Route as PokedexDemoImport } from './routes/pokedex-demo'
+import { Route as LearnMoreImport } from './routes/learn-more'
 import { Route as IntroImport } from './routes/intro'
 import { Route as FrontendStatesImport } from './routes/frontend-states'
 import { Route as DemoTimeImport } from './routes/demo-time'
+import { Route as AboutMeImport } from './routes/about-me'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -26,9 +29,21 @@ const TanstackQueryRoute = TanstackQueryImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const QuestionsRoute = QuestionsImport.update({
+  id: '/questions',
+  path: '/questions',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const PokedexDemoRoute = PokedexDemoImport.update({
   id: '/pokedex-demo',
   path: '/pokedex-demo',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LearnMoreRoute = LearnMoreImport.update({
+  id: '/learn-more',
+  path: '/learn-more',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -50,6 +65,12 @@ const DemoTimeRoute = DemoTimeImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AboutMeRoute = AboutMeImport.update({
+  id: '/about-me',
+  path: '/about-me',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
@@ -65,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/about-me': {
+      id: '/about-me'
+      path: '/about-me'
+      fullPath: '/about-me'
+      preLoaderRoute: typeof AboutMeImport
       parentRoute: typeof rootRoute
     }
     '/demo-time': {
@@ -88,11 +116,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IntroImport
       parentRoute: typeof rootRoute
     }
+    '/learn-more': {
+      id: '/learn-more'
+      path: '/learn-more'
+      fullPath: '/learn-more'
+      preLoaderRoute: typeof LearnMoreImport
+      parentRoute: typeof rootRoute
+    }
     '/pokedex-demo': {
       id: '/pokedex-demo'
       path: '/pokedex-demo'
       fullPath: '/pokedex-demo'
       preLoaderRoute: typeof PokedexDemoImport
+      parentRoute: typeof rootRoute
+    }
+    '/questions': {
+      id: '/questions'
+      path: '/questions'
+      fullPath: '/questions'
+      preLoaderRoute: typeof QuestionsImport
       parentRoute: typeof rootRoute
     }
     '/tanstack-query': {
@@ -109,29 +151,38 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about-me': typeof AboutMeRoute
   '/demo-time': typeof DemoTimeRoute
   '/frontend-states': typeof FrontendStatesRoute
   '/intro': typeof IntroRoute
+  '/learn-more': typeof LearnMoreRoute
   '/pokedex-demo': typeof PokedexDemoRoute
+  '/questions': typeof QuestionsRoute
   '/tanstack-query': typeof TanstackQueryRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about-me': typeof AboutMeRoute
   '/demo-time': typeof DemoTimeRoute
   '/frontend-states': typeof FrontendStatesRoute
   '/intro': typeof IntroRoute
+  '/learn-more': typeof LearnMoreRoute
   '/pokedex-demo': typeof PokedexDemoRoute
+  '/questions': typeof QuestionsRoute
   '/tanstack-query': typeof TanstackQueryRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/about-me': typeof AboutMeRoute
   '/demo-time': typeof DemoTimeRoute
   '/frontend-states': typeof FrontendStatesRoute
   '/intro': typeof IntroRoute
+  '/learn-more': typeof LearnMoreRoute
   '/pokedex-demo': typeof PokedexDemoRoute
+  '/questions': typeof QuestionsRoute
   '/tanstack-query': typeof TanstackQueryRoute
 }
 
@@ -139,45 +190,60 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about-me'
     | '/demo-time'
     | '/frontend-states'
     | '/intro'
+    | '/learn-more'
     | '/pokedex-demo'
+    | '/questions'
     | '/tanstack-query'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about-me'
     | '/demo-time'
     | '/frontend-states'
     | '/intro'
+    | '/learn-more'
     | '/pokedex-demo'
+    | '/questions'
     | '/tanstack-query'
   id:
     | '__root__'
     | '/'
+    | '/about-me'
     | '/demo-time'
     | '/frontend-states'
     | '/intro'
+    | '/learn-more'
     | '/pokedex-demo'
+    | '/questions'
     | '/tanstack-query'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutMeRoute: typeof AboutMeRoute
   DemoTimeRoute: typeof DemoTimeRoute
   FrontendStatesRoute: typeof FrontendStatesRoute
   IntroRoute: typeof IntroRoute
+  LearnMoreRoute: typeof LearnMoreRoute
   PokedexDemoRoute: typeof PokedexDemoRoute
+  QuestionsRoute: typeof QuestionsRoute
   TanstackQueryRoute: typeof TanstackQueryRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutMeRoute: AboutMeRoute,
   DemoTimeRoute: DemoTimeRoute,
   FrontendStatesRoute: FrontendStatesRoute,
   IntroRoute: IntroRoute,
+  LearnMoreRoute: LearnMoreRoute,
   PokedexDemoRoute: PokedexDemoRoute,
+  QuestionsRoute: QuestionsRoute,
   TanstackQueryRoute: TanstackQueryRoute,
 }
 
@@ -192,15 +258,21 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/about-me",
         "/demo-time",
         "/frontend-states",
         "/intro",
+        "/learn-more",
         "/pokedex-demo",
+        "/questions",
         "/tanstack-query"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/about-me": {
+      "filePath": "about-me.tsx"
     },
     "/demo-time": {
       "filePath": "demo-time.tsx"
@@ -211,8 +283,14 @@ export const routeTree = rootRoute
     "/intro": {
       "filePath": "intro.tsx"
     },
+    "/learn-more": {
+      "filePath": "learn-more.tsx"
+    },
     "/pokedex-demo": {
       "filePath": "pokedex-demo.tsx"
+    },
+    "/questions": {
+      "filePath": "questions.tsx"
     },
     "/tanstack-query": {
       "filePath": "tanstack-query.tsx"

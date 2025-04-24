@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
 export const StyledPokedex = styled.main`
   background: #d20a41;
@@ -14,10 +14,10 @@ export const StyledPokedex = styled.main`
     gap: 0.5rem;
     padding: 1rem;
     div {
-      border: 0.125rem solid white;
+      border: 0.125rem solid ${(p) => p.theme.palette.white};
     }
     div:first-child {
-      border: 0.25rem solid white;
+      border: 0.25rem solid ${(p) => p.theme.palette.white};
     }
     border-bottom: 2px solid black;
   }
@@ -29,7 +29,7 @@ export const StyledPokedex = styled.main`
 
     & > p {
       text-transform: capitalize;
-      text-shadow: -1px 1px 0 white;
+      text-shadow: -1px 1px 0 ${(p) => p.theme.palette.white};
     }
     & > div > img {
       padding: 0.25rem;
@@ -51,14 +51,42 @@ export const StyledLed = styled.div<{ $size?: "lg"; $color: "red" | "green" | "y
   background-color: ${getColor};
 `;
 
+const offScreenAnimation = keyframes`
+    0% { transform: translate(0,0) }
+    10% { transform: translate(-5%,-5%) }
+    20% { transform: translate(-10%,5%) }
+    30% { transform: translate(5%,-10%) }
+    40% { transform: translate(-5%,15%) }
+    50% { transform: translate(-10%,5%) }
+    60% { transform: translate(15%,0) }
+    70% { transform: translate(0,10%) }
+    80% { transform: translate(-15%,0) }
+    90% { transform: translate(10%,5%) }
+    100% { transform: translate(5%,0) }
+`;
+const screenNoise = css`
+  &::before {
+    content: "";
+    height: 200vh;
+    aspect-ratio: 1;
+    position: absolute;
+    background: transparent url("http://assets.iceable.com/img/noise-transparent.png") repeat 0 0;
+    background-repeat: repeat;
+    animation: ${offScreenAnimation} 0.5s infinite;
+    opacity: 0.9;
+    visibility: visible;
+  }
+`;
+
 export const StyledScreen = styled.div<{ $hasData: boolean }>`
   clip-path: polygon(0 0, 100% 0, 100% 100%, 50px 100%, 0 calc(100% - 50px));
   transition: background-color 0.5s ease;
-  background-color: ${(p) => (p.$hasData ? "white" : "black")};
+  background-color: ${(p) => (p.$hasData ? p.theme.palette.white : "#111")};
+
   height: 200px;
   aspect-ratio: 10/6;
   margin: 0 auto;
-  color: white;
+  color: ${(p) => p.theme.palette.white};
 
   box-shadow: 0 0 2px 2px #666 inset;
 
@@ -70,6 +98,8 @@ export const StyledScreen = styled.div<{ $hasData: boolean }>`
     height: 75%;
   }
   position: relative;
+
+  ${screenNoise};
   &::after {
     content: "";
     position: absolute;
@@ -92,7 +122,7 @@ export const StyledInfo = styled.div`
     border-radius: 8px;
     padding: 0.75rem 0.25rem;
     background: #333;
-    color: white;
+    color: ${(p) => p.theme.palette.white};
     text-transform: capitalize;
     box-shadow: -1px 1px 0 0 black;
   }

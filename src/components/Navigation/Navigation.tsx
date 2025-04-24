@@ -5,18 +5,21 @@ import { Typography } from "../Typography/Typography";
 import { useState } from "react";
 
 const slides = [
-  { route: "/", name: "Title" },
-  { route: "/intro", name: "About me" },
+  { route: "/", name: "Oi" },
+  { route: "/intro", name: "Intro" },
   { route: "/frontend-states", name: "Estados do frontend" },
   { route: "/demo-time", name: "Demo time" },
   { route: "/tanstack-query", name: "TanStack Query" },
   { route: "/pokedex-demo", name: "Demo" },
+  { route: "/learn-more", name: "Mais conteúdos" },
+  { route: "/questions", name: "Perguntas?" },
+  { route: "/about-me", name: "Sobre" },
 ] as const satisfies { route: string; name: string }[];
 
 export const Navigation = () => {
   const matchRoute = useMatchRoute();
   const navigate = useNavigate();
-  const [isExtended, setIsExtended] = useState(false);
+  const [isExtended, setIsExtended] = useState(true);
   const currentSlideIndex = slides.findIndex((slide) => {
     return matchRoute({ to: slide.route });
   });

@@ -31,7 +31,8 @@ const contents = [
   {
     left: (
       <Typography variant="title" element="h2">
-        😄 Estados de aplicação
+        {" "}
+        😄 Estados de aplicação{" "}
       </Typography>
     ),
     right: <img src={appStatesImg} alt="useState" />,
@@ -39,15 +40,7 @@ const contents = [
   {
     left: (
       <Typography variant="title" element="h2">
-        🙂 Estado do navegador
-      </Typography>
-    ),
-    right: <img src={browserStatesImg} alt="browserState" />,
-  },
-  {
-    left: (
-      <Typography variant="title" element="h2">
-        😐 Estados de rota
+        🙂 Estados de rota
       </Typography>
     ),
     right: <img src={routeStatesImg} alt="routeState" />,
@@ -55,7 +48,15 @@ const contents = [
   {
     left: (
       <Typography variant="title" element="h2">
-        🥺 Estado de formulário
+        😐 Estados do navegador
+      </Typography>
+    ),
+    right: <img src={browserStatesImg} alt="browserState" />,
+  },
+  {
+    left: (
+      <Typography variant="title" element="h2">
+        🥺 Estados de formulário
       </Typography>
     ),
     right: <img src={formStatesImg} alt="formState" />,
@@ -68,7 +69,7 @@ const contents = [
           alt="this is fine gif"
         />
         <Typography variant="title" element="h2">
-          Estado de servidor
+          Estados de servidor
         </Typography>
       </StyledHeader>
     ),
@@ -76,17 +77,24 @@ const contents = [
   },
 ];
 
+const withBlankRightFrames = contents.flatMap((content) => [
+  { left: content.left, right: <></> },
+  { ...content },
+]);
+
 function RouteComponent() {
   const [currentFrame, setCurrentFrame] = useState(0);
-  const { left, right } = contents[currentFrame];
+  const { left, right } = withBlankRightFrames[currentFrame];
 
   const handleNextFrame = () => {
-    if (currentFrame === contents.length - 1) return;
-    setCurrentFrame((prevFrame) => (prevFrame + 1) % contents.length);
+    if (currentFrame === withBlankRightFrames.length - 1) return;
+    setCurrentFrame((prevFrame) => (prevFrame + 1) % withBlankRightFrames.length);
   };
   const handlePreviousFrame = () => {
     if (currentFrame === 0) return;
-    setCurrentFrame((prevFrame) => (prevFrame - 1 + contents.length) % contents.length);
+    setCurrentFrame(
+      (prevFrame) => (prevFrame - 1 + withBlankRightFrames.length) % withBlankRightFrames.length,
+    );
   };
   useMouseClick("left", handleNextFrame);
   useMouseClick("right", handlePreviousFrame);

@@ -7,22 +7,22 @@ export const Route = createFileRoute("/intro")({
 });
 
 function Intro() {
+  const states = [
+    "👤 Usuário",
+    "🖥️ plataforma",
+    "🖱️ Interação",
+    "🔄 Mudança de estado",
+    "⚛️ Feedback",
+  ];
   return (
-    <CenteredTemplate>
-      <Typography variant="title" element="h1" size="lg">
-        Alan Peterson C. Silva
+    <CenteredTemplate header="Aplicações web">
+      <Typography variant="body" element="p">
+        {states.join("→")}
       </Typography>
-      <hr />
-      <Typography variant="title" element="h2" size="md">
-        Bacharel em Ciência da Computação - UFPR
-      </Typography>
-      <Typography variant="title" element="h3" size="md">
-        Engenheiro de Software Fullstack desde 2010 🦕
-      </Typography>
-      <hr />
-      <Typography variant="title" element="h3" size="sm">
-        Usando Tanstack Query (aka react-query) em produção desde 2019
-      </Typography>
+      <img
+        src="https://cdn-images-1.medium.com/v2/resize:fit:1600/1*0OosM_BVC9dNILDoyvUGAg.gif"
+        alt="Simpson's kid using computer"
+      />
     </CenteredTemplate>
   );
 }

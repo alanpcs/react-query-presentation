@@ -10,4 +10,7 @@ export const StyledTemplate = styled.main`
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  header {
+    margin-bottom: 2rem;
+  }
 `;

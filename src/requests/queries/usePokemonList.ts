@@ -34,7 +34,6 @@ export const usePokemonList = (params?: { filter?: ElementType; pageSize: number
   // }, []);
 
   // return {data: pokemon, isLoading, error};
-  console.log("params", params);
 
   const pokemonListQuery = useQuery({
     queryKey: ["pokemonList", pageSize],

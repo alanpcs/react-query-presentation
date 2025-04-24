@@ -56,7 +56,7 @@ export const GlobalStyle = createGlobalStyle`
       opacity: 25%;
     }
 
-    &:not([aria-disabled="true"]):hover::after {
+    &:not([aria-disabled="true"]):hover::after, &:not([aria-disabled="true"]).active::after {
       width: 100%;
     }
 
