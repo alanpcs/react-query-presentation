@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-type Variants = "title" | "body";
+type Variants = "title" | "body" | "poke";
 type Elements = "h1" | "h2" | "h3" | "span" | "p";
 type Sizes = "sm" | "md" | "lg";
 type TypographyProps = { variant?: Variants; element?: Elements; size?: Sizes };
@@ -22,7 +22,11 @@ type FontSizeMap = {
     };
   };
 };
-
+const defaultBodySizes = {
+  sm: "0.875rem",
+  md: "1rem",
+  lg: "1.125rem",
+};
 // Example values (you can adjust the actual sizes to fit your design)
 const fontSizes: FontSizeMap = {
   title: {
@@ -43,16 +47,11 @@ const fontSizes: FontSizeMap = {
     },
   },
   body: {
-    p: {
-      sm: "0.875rem",
-      md: "1rem",
-      lg: "1.125rem",
-    },
-    span: {
-      sm: "0.75rem",
-      md: "0.875rem",
-      lg: "1rem",
-    },
+    p: defaultBodySizes,
+    span: defaultBodySizes,
+  },
+  poke: {
+    p: { ...defaultBodySizes, lg: "3rem" },
   },
 };
 

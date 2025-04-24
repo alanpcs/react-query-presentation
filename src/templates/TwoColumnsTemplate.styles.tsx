@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledTemplate = styled.main`
   flex-grow: 1;
 
-  padding: 2rem;
+  padding: 0 2rem;
   text-align: center;
 
   display: flex;

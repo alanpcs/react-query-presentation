@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const StyledTemplate = styled.main`
-  margin: auto;
-  padding: 5rem 2rem 2rem 2rem;
+  flex-grow: 1;
+  padding: 3rem 2rem 0;
   text-align: center;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: start;
+
   gap: 1rem;
 `;

@@ -8,7 +8,9 @@ const slides = [
   { route: "/", name: "Title" },
   { route: "/intro", name: "About me" },
   { route: "/frontend-states", name: "Estados do frontend" },
+  { route: "/demo-time", name: "Demo time" },
   { route: "/tanstack-query", name: "TanStack Query" },
+  { route: "/pokedex-demo", name: "Demo" },
 ] as const satisfies { route: string; name: string }[];
 
 export const Navigation = () => {

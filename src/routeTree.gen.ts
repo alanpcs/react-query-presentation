@@ -12,8 +12,10 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as TanstackQueryImport } from './routes/tanstack-query'
+import { Route as PokedexDemoImport } from './routes/pokedex-demo'
 import { Route as IntroImport } from './routes/intro'
 import { Route as FrontendStatesImport } from './routes/frontend-states'
+import { Route as DemoTimeImport } from './routes/demo-time'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -21,6 +23,12 @@ import { Route as IndexImport } from './routes/index'
 const TanstackQueryRoute = TanstackQueryImport.update({
   id: '/tanstack-query',
   path: '/tanstack-query',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const PokedexDemoRoute = PokedexDemoImport.update({
+  id: '/pokedex-demo',
+  path: '/pokedex-demo',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -33,6 +41,12 @@ const IntroRoute = IntroImport.update({
 const FrontendStatesRoute = FrontendStatesImport.update({
   id: '/frontend-states',
   path: '/frontend-states',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DemoTimeRoute = DemoTimeImport.update({
+  id: '/demo-time',
+  path: '/demo-time',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,6 +67,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/demo-time': {
+      id: '/demo-time'
+      path: '/demo-time'
+      fullPath: '/demo-time'
+      preLoaderRoute: typeof DemoTimeImport
+      parentRoute: typeof rootRoute
+    }
     '/frontend-states': {
       id: '/frontend-states'
       path: '/frontend-states'
@@ -65,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/intro'
       fullPath: '/intro'
       preLoaderRoute: typeof IntroImport
+      parentRoute: typeof rootRoute
+    }
+    '/pokedex-demo': {
+      id: '/pokedex-demo'
+      path: '/pokedex-demo'
+      fullPath: '/pokedex-demo'
+      preLoaderRoute: typeof PokedexDemoImport
       parentRoute: typeof rootRoute
     }
     '/tanstack-query': {
@@ -81,46 +109,75 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/demo-time': typeof DemoTimeRoute
   '/frontend-states': typeof FrontendStatesRoute
   '/intro': typeof IntroRoute
+  '/pokedex-demo': typeof PokedexDemoRoute
   '/tanstack-query': typeof TanstackQueryRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demo-time': typeof DemoTimeRoute
   '/frontend-states': typeof FrontendStatesRoute
   '/intro': typeof IntroRoute
+  '/pokedex-demo': typeof PokedexDemoRoute
   '/tanstack-query': typeof TanstackQueryRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/demo-time': typeof DemoTimeRoute
   '/frontend-states': typeof FrontendStatesRoute
   '/intro': typeof IntroRoute
+  '/pokedex-demo': typeof PokedexDemoRoute
   '/tanstack-query': typeof TanstackQueryRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/frontend-states' | '/intro' | '/tanstack-query'
+  fullPaths:
+    | '/'
+    | '/demo-time'
+    | '/frontend-states'
+    | '/intro'
+    | '/pokedex-demo'
+    | '/tanstack-query'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/frontend-states' | '/intro' | '/tanstack-query'
-  id: '__root__' | '/' | '/frontend-states' | '/intro' | '/tanstack-query'
+  to:
+    | '/'
+    | '/demo-time'
+    | '/frontend-states'
+    | '/intro'
+    | '/pokedex-demo'
+    | '/tanstack-query'
+  id:
+    | '__root__'
+    | '/'
+    | '/demo-time'
+    | '/frontend-states'
+    | '/intro'
+    | '/pokedex-demo'
+    | '/tanstack-query'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DemoTimeRoute: typeof DemoTimeRoute
   FrontendStatesRoute: typeof FrontendStatesRoute
   IntroRoute: typeof IntroRoute
+  PokedexDemoRoute: typeof PokedexDemoRoute
   TanstackQueryRoute: typeof TanstackQueryRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DemoTimeRoute: DemoTimeRoute,
   FrontendStatesRoute: FrontendStatesRoute,
   IntroRoute: IntroRoute,
+  PokedexDemoRoute: PokedexDemoRoute,
   TanstackQueryRoute: TanstackQueryRoute,
 }
 
@@ -135,19 +192,27 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/demo-time",
         "/frontend-states",
         "/intro",
+        "/pokedex-demo",
         "/tanstack-query"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
+    "/demo-time": {
+      "filePath": "demo-time.tsx"
+    },
     "/frontend-states": {
       "filePath": "frontend-states.tsx"
     },
     "/intro": {
       "filePath": "intro.tsx"
+    },
+    "/pokedex-demo": {
+      "filePath": "pokedex-demo.tsx"
     },
     "/tanstack-query": {
       "filePath": "tanstack-query.tsx"

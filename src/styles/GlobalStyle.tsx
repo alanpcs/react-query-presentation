@@ -7,9 +7,10 @@ export const GlobalStyle = createGlobalStyle`
   ${normalizeCss}
   html {
     font-size: 16px;
+    scrollbar-color: #374151 transparent;
   }
   #root {
-    padding: 0 1rem;
+    /* padding: 0 1rem; */
     display: flex;
     flex-direction: column;
   }

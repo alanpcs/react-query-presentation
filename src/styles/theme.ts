@@ -1,9 +1,10 @@
 export const theme = {
   name: "light",
   fontFamily: {
-    title: "Didact Gothic",
-    body: "Merriweather",
-    code: "Fira Code",
+    title: '"Didact Gothic", sans-serif',
+    body: '"Merriweather", serif',
+    code: '"Fira Code", sans-serif',
+    poke: '"Jersey 10", sans-serif',
   },
   palette: {
     white: "#fff",
