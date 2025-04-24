@@ -20,7 +20,7 @@ export const AppProviders = ({ children }: React.PropsWithChildren) => {
         <GlobalStyle />
         {children}
       </ThemeProvider>
-      <TanStackRouterDevtools />
+      {shouldShowDevTools && <TanStackRouterDevtools />}
     </QueryClientProvider>
   );
 };
