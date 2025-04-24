@@ -1,4 +1,4 @@
-import { ElementType } from "../../../../requests/types";
+import { ElementType } from "../../../../services/types";
 
 export const ElementImage = (props: { name: ElementType }) => {
   const { name } = props;

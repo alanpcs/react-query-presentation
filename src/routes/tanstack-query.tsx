@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Typography } from "../components/Typography/Typography";
 import { CenteredTemplate } from "../templates/CenteredTemplate";
 import styled from "styled-components";
-import { usePokemonList } from "../requests/queries/usePokemonList";
+import { usePokemonList } from "../services/queries/usePokemonList";
 
 export const Route = createFileRoute("/tanstack-query")({
   component: RouteComponent,

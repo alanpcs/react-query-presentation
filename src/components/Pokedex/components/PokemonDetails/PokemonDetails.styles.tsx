@@ -94,7 +94,13 @@ export const StyledScreen = styled.div<{ $hasData: boolean }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  & > img {
+  position: relative;
+  & > img:not(:last-child) {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  & > img:last-child {
     height: 75%;
   }
   position: relative;

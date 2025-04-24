@@ -11,7 +11,7 @@ const slides = [
   { route: "/demo-time", name: "Demo time" },
   { route: "/tanstack-query", name: "TanStack Query" },
   { route: "/pokedex-demo", name: "Demo" },
-  { route: "/learn-more", name: "Mais conteúdos" },
+  { route: "/learn-more", name: "Mais" },
   { route: "/questions", name: "Perguntas?" },
   { route: "/about-me", name: "Sobre" },
 ] as const satisfies { route: string; name: string }[];

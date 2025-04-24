@@ -1,4 +1,5 @@
-import { usePokemonDetails } from "../../../../requests/queries/usePokemonDetails";
+import { useCaughtPokemon } from "../../../../services/queries/useFavoritePokemon";
+import { usePokemonDetails } from "../../../../services/queries/usePokemonDetails";
 import { PokeLoading } from "../../../PokeLoading/PokeLoading";
 import { Typography } from "../../../Typography/Typography";
 import { ElementImage } from "../PokemonType/PokemonType";
@@ -7,6 +8,9 @@ import { StyledInfo, StyledLed, StyledPokedex, StyledScreen } from "./PokemonDet
 export const PokemonDetails = (props: { pokemonId: number }) => {
   const { pokemonId } = props;
   const { data, isLoading } = usePokemonDetails(pokemonId);
+  const { data: favoritePokemon } = useCaughtPokemon();
+  const isCaught = favoritePokemon?.some((favorite) => favorite.url === data?.url) || false;
+  console.log(">>>", isCaught, data?.url);
 
   return (
     <StyledPokedex>
@@ -18,6 +22,12 @@ export const PokemonDetails = (props: { pokemonId: number }) => {
       </header>
       <section>
         <StyledScreen $hasData={!!data}>
+          {isCaught && (
+            <img
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+              alt="pokemon marked as caught"
+            />
+          )}
           {!data && !isLoading && <Typography variant="poke">Select a pokemon</Typography>}
           {!data && isLoading && <PokeLoading />}
           {data && (

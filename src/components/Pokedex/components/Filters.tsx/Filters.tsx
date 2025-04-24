@@ -1,15 +1,16 @@
 import styled, { css } from "styled-components";
-import { ElementType, elementTypes } from "../../../../requests/types";
+import { ElementType, elementTypes } from "../../../../services/types";
 import { ElementImage } from "../PokemonType/PokemonType";
 
+export type FilterType = ElementType | "caught";
 type FiltersProps = {
-  onSelectFilter: (filter?: ElementType) => void;
-  filter?: ElementType;
+  onSelectFilter: (filter?: FilterType) => void;
+  filter?: FilterType;
 };
 
 export const Filters = (props: FiltersProps) => {
   const { onSelectFilter, filter } = props;
-  const handleSelectedFilter = (newFilter?: ElementType) => {
+  const handleSelectedFilter = (newFilter?: FilterType) => {
     if (newFilter === filter) {
       onSelectFilter();
       return;
@@ -25,7 +26,21 @@ export const Filters = (props: FiltersProps) => {
       <ElementImage name={type} key={type} />
     </StyledFilterOption>
   ));
-  return <StyledFilters>{filterOptions}</StyledFilters>;
+  return (
+    <StyledFilters>
+      {filterOptions}
+      <StyledFilterOption
+        onClick={() => handleSelectedFilter("caught")}
+        $active={"caught" === filter}
+      >
+        <img
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+          alt="favorite pokemon"
+          height={24}
+        />
+      </StyledFilterOption>
+    </StyledFilters>
+  );
 };
 
 const StyledFilters = styled.div`

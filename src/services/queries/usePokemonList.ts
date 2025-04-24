@@ -1,15 +1,11 @@
 // import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ElementType, TypeResult } from "../types";
+import { NamedUrl, TypeResult } from "../types";
+import { FilterType } from "../../components/Pokedex/components/Filters.tsx/Filters";
 
-type PokemonListItem = {
-  name: string;
-  url: string;
-};
-
-export const usePokemonList = (params?: { filter?: ElementType; pageSize: number }) => {
+export const usePokemonList = (params?: { filter?: FilterType; pageSize: number }) => {
   const { filter, pageSize = 20 } = params || {};
-  // const [pokemon, setPokemon] = useState<PokemonListItem[]>([]);
+  // const [pokemon, setPokemon] = useState<NamedUrl[]>([]);
   // const [isLoading, setIsLoading] = useState(false);
   // const [error, setError] = useState<Error | null>(null);
 
@@ -47,25 +43,22 @@ export const usePokemonList = (params?: { filter?: ElementType; pageSize: number
     queryFn: async () => {
       return await getFilteredPokemon(pageSize, filter || "bug");
     },
-    enabled: !!filter,
+    enabled: !!filter && filter !== "caught",
   });
 
   return filter ? filteredPokemonQuery : pokemonListQuery;
 };
 
-const getPokemon = async (limit?: number): Promise<PokemonListItem[]> => {
+const getPokemon = async (limit?: number): Promise<NamedUrl[]> => {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`);
   if (!response.ok) {
     throw new Error("Network response was not ok");
   }
-  const parsedResponse: { results: PokemonListItem[] } = await response.json();
+  const parsedResponse: { results: NamedUrl[] } = await response.json();
   return parsedResponse.results;
 };
 
-const getFilteredPokemon = async (
-  limit: number,
-  filter: ElementType,
-): Promise<PokemonListItem[]> => {
+const getFilteredPokemon = async (limit: number, filter: FilterType): Promise<NamedUrl[]> => {
   const response = await fetch(`https://pokeapi.co/api/v2/type/${filter}`);
   if (!response.ok) {
     throw new Error("Network response was not ok");

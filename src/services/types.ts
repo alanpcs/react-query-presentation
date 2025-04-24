@@ -17,6 +17,7 @@ export interface PokemonDetails {
   stats: Stat[];
   types: PokemonType[];
   weight: number;
+  url: string;
 }
 
 export const elementTypes = [

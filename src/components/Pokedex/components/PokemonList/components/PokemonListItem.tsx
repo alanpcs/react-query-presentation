@@ -1,4 +1,8 @@
+import { useCatchPokemon } from "../../../../../services/mutations/useCatchPokemon";
+import { useReleasePokemon } from "../../../../../services/mutations/useReleasePokemon";
+import { useCaughtPokemon } from "../../../../../services/queries/useFavoritePokemon";
 import { Typography } from "../../../../Typography/Typography";
+import { StyledCaught, StyledPokemon } from "./PokemonlistItem.styles";
 
 type PokemonListItemProps = {
   name: string;
@@ -8,15 +12,39 @@ type PokemonListItemProps = {
 export const PokemonListItem = (props: PokemonListItemProps) => {
   const { name, url, onSelectPokemon } = props;
   const idFromUrl = Number(url.split("pokemon/")[1].replace("/", "") || "1");
+  const { data: favoritePokemon } = useCaughtPokemon();
+  const isCaught = favoritePokemon?.some((favorite) => favorite.url === url) || false;
+  const catchPokemonMutation = useCatchPokemon();
+  const releasePokemonMutation = useReleasePokemon();
+  const handleMarkPokemon = () => {
+    if (isCaught) {
+      releasePokemonMutation.mutate(url);
+      onSelectPokemon(0);
+      return;
+    }
+    catchPokemonMutation.mutate({ name, url });
+  };
+
   return (
-    <button onClick={() => onSelectPokemon(idFromUrl)}>
+    <StyledPokemon
+      onClick={() => {
+        onSelectPokemon(idFromUrl);
+      }}
+      onDoubleClick={() => handleMarkPokemon()}
+    >
       <img
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${idFromUrl}.png`}
         alt={`${name} sprite`}
       />
+      {isCaught && (
+        <StyledCaught
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+          alt="pokemon marked as caught"
+        />
+      )}
       <Typography variant="poke">
         #{String(idFromUrl).padStart(3, "0")} {name}
       </Typography>
-    </button>
+    </StyledPokemon>
   );
 };
