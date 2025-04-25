@@ -1,13 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { favoriteService } from "../FavoriteService";
+import { caughtService } from "../CaughtService";
 
 export const useReleasePokemon = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationKey: ["release"],
-    mutationFn: favoriteService.removeSavedItem,
+    mutationFn: caughtService.removeSavedItem,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["favorites"] });
+      queryClient.invalidateQueries({ queryKey: ["caughts"] });
     },
   });
 };

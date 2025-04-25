@@ -2,7 +2,7 @@ import { NamedUrl } from "./types";
 
 type SavedItem = NamedUrl;
 
-export const favoriteService = {
+export const caughtService = {
   getSavedItems: (): Promise<SavedItem[]> => {
     const items = JSON.parse(localStorage.getItem("savedItems") || "[]");
     return Promise.resolve(items);

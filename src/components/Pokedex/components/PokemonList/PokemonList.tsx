@@ -1,4 +1,4 @@
-import { useCaughtPokemon } from "../../../../services/queries/useFavoritePokemon";
+import { useCaughtPokemon } from "../../../../services/queries/useCaughtPokemon";
 import { usePokemonList } from "../../../../services/queries/usePokemonList";
 import { PokeLoading } from "../../../PokeLoading/PokeLoading";
 import { FilterType } from "../Filters.tsx/Filters";
@@ -16,9 +16,9 @@ type PokemonListProps = {
 export const PokemonList = (props: PokemonListProps) => {
   const { onSelectPokemon, filter } = props;
   const pokemonListQuery = usePokemonList({ filter, pageSize: 30 });
-  const favoritesQuery = useCaughtPokemon();
-  const isLoading = pokemonListQuery.isLoading || favoritesQuery.isLoading;
-  const pokemonListData = filter === "caught" ? favoritesQuery.data : pokemonListQuery.data;
+  const caughtsQuery = useCaughtPokemon();
+  const isLoading = pokemonListQuery.isLoading || caughtsQuery.isLoading;
+  const pokemonListData = filter === "caught" ? caughtsQuery.data : pokemonListQuery.data;
 
   if (pokemonListQuery.error) {
     return <p>Error: {pokemonListQuery.error?.message || ""}</p>;

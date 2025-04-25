@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { ElementType, elementTypes } from "../../../../services/types";
 import { ElementImage } from "../PokemonType/PokemonType";
-import { useCaughtPokemon } from "../../../../services/queries/useFavoritePokemon";
+import { useCaughtPokemon } from "../../../../services/queries/useCaughtPokemon";
 
 export type FilterType = ElementType | "caught";
 type FiltersProps = {
@@ -37,7 +37,7 @@ export const Filters = (props: FiltersProps) => {
       >
         <img
           src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
-          alt="favorite pokemon"
+          alt="caught pokemon"
           height={24}
         />
       </StyledFilterOption>

@@ -1,4 +1,4 @@
-import { useCaughtPokemon } from "../../../../services/queries/useFavoritePokemon";
+import { useCaughtPokemon } from "../../../../services/queries/useCaughtPokemon";
 import { usePokemonDetails } from "../../../../services/queries/usePokemonDetails";
 import { PokeLoading } from "../../../PokeLoading/PokeLoading";
 import { Typography } from "../../../Typography/Typography";
@@ -8,8 +8,8 @@ import { StyledInfo, StyledLed, StyledPokedex, StyledScreen } from "./PokemonDet
 export const PokemonDetails = (props: { pokemonId: number }) => {
   const { pokemonId } = props;
   const { data, isLoading } = usePokemonDetails(pokemonId);
-  const { data: favoritePokemon } = useCaughtPokemon();
-  const isCaught = favoritePokemon?.some((favorite) => favorite.url === data?.url) || false;
+  const { data: caughtPokemon } = useCaughtPokemon();
+  const isCaught = caughtPokemon?.some((caught) => caught.url === data?.url) || false;
   console.log(">>>", isCaught, data?.url);
 
   return (
