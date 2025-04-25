@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import { ElementType, elementTypes } from "../../../../services/types";
 import { ElementImage } from "../PokemonType/PokemonType";
+import { useCaughtPokemon } from "../../../../services/queries/useFavoritePokemon";
 
 export type FilterType = ElementType | "caught";
 type FiltersProps = {
@@ -10,6 +11,7 @@ type FiltersProps = {
 
 export const Filters = (props: FiltersProps) => {
   const { onSelectFilter, filter } = props;
+  const cautchQuery = useCaughtPokemon();
   const handleSelectedFilter = (newFilter?: FilterType) => {
     if (newFilter === filter) {
       onSelectFilter();
@@ -39,6 +41,7 @@ export const Filters = (props: FiltersProps) => {
           height={24}
         />
       </StyledFilterOption>
+      <StyledFilterOption>{cautchQuery.data?.length || 0}</StyledFilterOption>
     </StyledFilters>
   );
 };
