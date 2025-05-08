@@ -19,4 +19,11 @@ describe("Filters", () => {
     await userEvent.click(button);
     expect(onSelectSpy).toHaveBeenCalledWith("ice");
   });
+
+  it("should call callback prop when a filter is clicked", async () => {
+    const container = defaultRender();
+    const button = container.getByRole("img", { name: "ice type" });
+    await userEvent.click(button);
+    expect(onSelectSpy).toHaveBeenCalledWith("ice");
+  });
 });
