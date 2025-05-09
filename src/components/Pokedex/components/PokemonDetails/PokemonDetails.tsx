@@ -10,7 +10,6 @@ export const PokemonDetails = (props: { pokemonId: number }) => {
   const { data, isLoading } = usePokemonDetails(pokemonId);
   const { data: caughtPokemon } = useCaughtPokemon();
   const isCaught = caughtPokemon?.some((caught) => caught.url === data?.url) || false;
-  console.log(">>>", isCaught, data?.url);
 
   return (
     <StyledPokedex>
