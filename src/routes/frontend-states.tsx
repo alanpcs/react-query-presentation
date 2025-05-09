@@ -3,13 +3,13 @@ import { createFileRoute } from "@tanstack/react-router";
 import { TwoColumnsTemplate } from "../templates/TwoColumnsTemplate";
 import { Typography } from "../components/Typography/Typography";
 import { useMouseClick } from "../hooks/useMouseClick";
+import styled from "styled-components";
 
 import appStatesImg from "../assets/images/appStates.png";
 import routeStatesImg from "../assets/images/routeStates.png";
 import browserStatesImg from "../assets/images/browserStates.png";
 import formStatesImg from "../assets/images/formStates.png";
 import serverStatesImg from "../assets/images/serverStates.png";
-import styled from "styled-components";
 
 export const Route = createFileRoute("/frontend-states")({
   component: RouteComponent,
@@ -31,8 +31,7 @@ const contents = [
   {
     left: (
       <Typography variant="title" element="h2">
-        {" "}
-        😄 Estados de aplicação{" "}
+        😄 Estados de aplicação
       </Typography>
     ),
     right: <img src={appStatesImg} alt="useState" />,
@@ -108,6 +107,11 @@ function RouteComponent() {
       }
       left={left}
       right={right}
+      footer={
+        <Typography variant="body" element="span" size="sm">
+          click to pass subslides
+        </Typography>
+      }
     />
   );
 }

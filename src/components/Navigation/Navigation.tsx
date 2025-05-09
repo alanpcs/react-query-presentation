@@ -3,6 +3,7 @@ import { StyledLinks } from "./Navigation.styles";
 import { useKeyUp } from "../../hooks/useKeyUp";
 import { Typography } from "../Typography/Typography";
 import { useState } from "react";
+import { useViewportWidth } from "../../hooks/useViewportWidth";
 
 const slides = [
   { route: "/", name: "Oi" },
@@ -19,7 +20,8 @@ const slides = [
 export const Navigation = () => {
   const matchRoute = useMatchRoute();
   const navigate = useNavigate();
-  const [isExtended, setIsExtended] = useState(true);
+  const [viewportWideEnoughForExpanded] = useViewportWidth();
+  const [isExtended, setIsExtended] = useState(viewportWideEnoughForExpanded);
   const currentSlideIndex = slides.findIndex((slide) => {
     return matchRoute({ to: slide.route });
   });

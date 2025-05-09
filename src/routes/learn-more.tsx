@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CenteredTemplate } from "../templates/CenteredTemplate";
 import styled from "styled-components";
+import { useViewportWidth } from "../hooks/useViewportWidth";
 
 export const Route = createFileRoute("/learn-more")({
   component: RouteComponent,
@@ -30,6 +31,7 @@ const moreInfo = [
 ];
 
 function RouteComponent() {
+  const [isWideEnough] = useViewportWidth();
   return (
     <CenteredTemplate header="Mais sobre React Query">
       <StyledLinkList>
@@ -37,7 +39,8 @@ function RouteComponent() {
           {moreInfo.map(({ link, title }) => (
             <li key={title}>
               <a href={link}>
-                {title}: {link}
+                {title}
+                {isWideEnough && `: ${link}`}
               </a>
             </li>
           ))}

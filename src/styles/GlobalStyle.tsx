@@ -19,8 +19,13 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${({ theme }) => theme.fontFamily.body};
 
     &>header{
-      text-align: center;
       padding-top: 4rem;
+    }
+    &>footer {
+      padding: 0.5rem;
+    }
+    &>header, &>footer{
+      text-align: center;
     }
   }
 
