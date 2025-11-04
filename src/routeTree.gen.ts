@@ -8,146 +8,62 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-// Import Routes
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as TanstackQueryRouteImport } from './routes/tanstack-query'
+import { Route as QuestionsRouteImport } from './routes/questions'
+import { Route as PokedexDemoRouteImport } from './routes/pokedex-demo'
+import { Route as LearnMoreRouteImport } from './routes/learn-more'
+import { Route as IntroRouteImport } from './routes/intro'
+import { Route as FrontendStatesRouteImport } from './routes/frontend-states'
+import { Route as DemoTimeRouteImport } from './routes/demo-time'
+import { Route as AboutMeRouteImport } from './routes/about-me'
+import { Route as IndexRouteImport } from './routes/index'
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as TanstackQueryImport } from './routes/tanstack-query'
-import { Route as QuestionsImport } from './routes/questions'
-import { Route as PokedexDemoImport } from './routes/pokedex-demo'
-import { Route as LearnMoreImport } from './routes/learn-more'
-import { Route as IntroImport } from './routes/intro'
-import { Route as FrontendStatesImport } from './routes/frontend-states'
-import { Route as DemoTimeImport } from './routes/demo-time'
-import { Route as AboutMeImport } from './routes/about-me'
-import { Route as IndexImport } from './routes/index'
-
-// Create/Update Routes
-
-const TanstackQueryRoute = TanstackQueryImport.update({
+const TanstackQueryRoute = TanstackQueryRouteImport.update({
   id: '/tanstack-query',
   path: '/tanstack-query',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const QuestionsRoute = QuestionsImport.update({
+const QuestionsRoute = QuestionsRouteImport.update({
   id: '/questions',
   path: '/questions',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const PokedexDemoRoute = PokedexDemoImport.update({
+const PokedexDemoRoute = PokedexDemoRouteImport.update({
   id: '/pokedex-demo',
   path: '/pokedex-demo',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const LearnMoreRoute = LearnMoreImport.update({
+const LearnMoreRoute = LearnMoreRouteImport.update({
   id: '/learn-more',
   path: '/learn-more',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const IntroRoute = IntroImport.update({
+const IntroRoute = IntroRouteImport.update({
   id: '/intro',
   path: '/intro',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const FrontendStatesRoute = FrontendStatesImport.update({
+const FrontendStatesRoute = FrontendStatesRouteImport.update({
   id: '/frontend-states',
   path: '/frontend-states',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const DemoTimeRoute = DemoTimeImport.update({
+const DemoTimeRoute = DemoTimeRouteImport.update({
   id: '/demo-time',
   path: '/demo-time',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const AboutMeRoute = AboutMeImport.update({
+const AboutMeRoute = AboutMeRouteImport.update({
   id: '/about-me',
   path: '/about-me',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-const IndexRoute = IndexImport.update({
+const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-
-// Populate the FileRoutesByPath interface
-
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/about-me': {
-      id: '/about-me'
-      path: '/about-me'
-      fullPath: '/about-me'
-      preLoaderRoute: typeof AboutMeImport
-      parentRoute: typeof rootRoute
-    }
-    '/demo-time': {
-      id: '/demo-time'
-      path: '/demo-time'
-      fullPath: '/demo-time'
-      preLoaderRoute: typeof DemoTimeImport
-      parentRoute: typeof rootRoute
-    }
-    '/frontend-states': {
-      id: '/frontend-states'
-      path: '/frontend-states'
-      fullPath: '/frontend-states'
-      preLoaderRoute: typeof FrontendStatesImport
-      parentRoute: typeof rootRoute
-    }
-    '/intro': {
-      id: '/intro'
-      path: '/intro'
-      fullPath: '/intro'
-      preLoaderRoute: typeof IntroImport
-      parentRoute: typeof rootRoute
-    }
-    '/learn-more': {
-      id: '/learn-more'
-      path: '/learn-more'
-      fullPath: '/learn-more'
-      preLoaderRoute: typeof LearnMoreImport
-      parentRoute: typeof rootRoute
-    }
-    '/pokedex-demo': {
-      id: '/pokedex-demo'
-      path: '/pokedex-demo'
-      fullPath: '/pokedex-demo'
-      preLoaderRoute: typeof PokedexDemoImport
-      parentRoute: typeof rootRoute
-    }
-    '/questions': {
-      id: '/questions'
-      path: '/questions'
-      fullPath: '/questions'
-      preLoaderRoute: typeof QuestionsImport
-      parentRoute: typeof rootRoute
-    }
-    '/tanstack-query': {
-      id: '/tanstack-query'
-      path: '/tanstack-query'
-      fullPath: '/tanstack-query'
-      preLoaderRoute: typeof TanstackQueryImport
-      parentRoute: typeof rootRoute
-    }
-  }
-}
-
-// Create and export the route tree
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -160,7 +76,6 @@ export interface FileRoutesByFullPath {
   '/questions': typeof QuestionsRoute
   '/tanstack-query': typeof TanstackQueryRoute
 }
-
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about-me': typeof AboutMeRoute
@@ -172,9 +87,8 @@ export interface FileRoutesByTo {
   '/questions': typeof QuestionsRoute
   '/tanstack-query': typeof TanstackQueryRoute
 }
-
 export interface FileRoutesById {
-  __root__: typeof rootRoute
+  __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about-me': typeof AboutMeRoute
   '/demo-time': typeof DemoTimeRoute
@@ -185,7 +99,6 @@ export interface FileRoutesById {
   '/questions': typeof QuestionsRoute
   '/tanstack-query': typeof TanstackQueryRoute
 }
-
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
@@ -222,7 +135,6 @@ export interface FileRouteTypes {
     | '/tanstack-query'
   fileRoutesById: FileRoutesById
 }
-
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutMeRoute: typeof AboutMeRoute
@@ -233,6 +145,74 @@ export interface RootRouteChildren {
   PokedexDemoRoute: typeof PokedexDemoRoute
   QuestionsRoute: typeof QuestionsRoute
   TanstackQueryRoute: typeof TanstackQueryRoute
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/tanstack-query': {
+      id: '/tanstack-query'
+      path: '/tanstack-query'
+      fullPath: '/tanstack-query'
+      preLoaderRoute: typeof TanstackQueryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/questions': {
+      id: '/questions'
+      path: '/questions'
+      fullPath: '/questions'
+      preLoaderRoute: typeof QuestionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pokedex-demo': {
+      id: '/pokedex-demo'
+      path: '/pokedex-demo'
+      fullPath: '/pokedex-demo'
+      preLoaderRoute: typeof PokedexDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/learn-more': {
+      id: '/learn-more'
+      path: '/learn-more'
+      fullPath: '/learn-more'
+      preLoaderRoute: typeof LearnMoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/intro': {
+      id: '/intro'
+      path: '/intro'
+      fullPath: '/intro'
+      preLoaderRoute: typeof IntroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/frontend-states': {
+      id: '/frontend-states'
+      path: '/frontend-states'
+      fullPath: '/frontend-states'
+      preLoaderRoute: typeof FrontendStatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo-time': {
+      id: '/demo-time'
+      path: '/demo-time'
+      fullPath: '/demo-time'
+      preLoaderRoute: typeof DemoTimeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about-me': {
+      id: '/about-me'
+      path: '/about-me'
+      fullPath: '/about-me'
+      preLoaderRoute: typeof AboutMeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+  }
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -246,55 +226,6 @@ const rootRouteChildren: RootRouteChildren = {
   QuestionsRoute: QuestionsRoute,
   TanstackQueryRoute: TanstackQueryRoute,
 }
-
-export const routeTree = rootRoute
+export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-/* ROUTE_MANIFEST_START
-{
-  "routes": {
-    "__root__": {
-      "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/about-me",
-        "/demo-time",
-        "/frontend-states",
-        "/intro",
-        "/learn-more",
-        "/pokedex-demo",
-        "/questions",
-        "/tanstack-query"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/about-me": {
-      "filePath": "about-me.tsx"
-    },
-    "/demo-time": {
-      "filePath": "demo-time.tsx"
-    },
-    "/frontend-states": {
-      "filePath": "frontend-states.tsx"
-    },
-    "/intro": {
-      "filePath": "intro.tsx"
-    },
-    "/learn-more": {
-      "filePath": "learn-more.tsx"
-    },
-    "/pokedex-demo": {
-      "filePath": "pokedex-demo.tsx"
-    },
-    "/questions": {
-      "filePath": "questions.tsx"
-    },
-    "/tanstack-query": {
-      "filePath": "tanstack-query.tsx"
-    }
-  }
-}
-ROUTE_MANIFEST_END */
